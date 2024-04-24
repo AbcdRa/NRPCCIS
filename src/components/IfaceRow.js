@@ -1,22 +1,31 @@
 import React from 'react';
+import axios from 'axios';
 
 class IfaceElement extends React.Component {
   render() {
-  <div className="col-lg-3 col-6">
-    <div className="small-box bg-info">
-      <div className="inner">
-        <h5>Bluetooth Device (Personal Area Network)</h5>
+    console.log(this.props.iface)
 
-        <p><b>ip4: </b>169.254.193.227</p>
-        <p><b>ip6: </b>169.254.193.227</p>
-        <p><b>mac: </b>38:87:d5:af:ac:25</p>
+    return (
+  <div className="col card-group mb-2" >
+     <div className="card bg-info" >
+      <div className="card-body">
+      
+        <h4 className='text-center'><b>{this.props.iface.index}</b></h4>
+        {this.props.iface.desc}
+        
       </div>
+      <ul class="list-group list-group-flush" style={{color:"black"}}>
+          {this.props.iface.ip4.length > 0 && <li class="list-group-item"><b>ip4: </b> {this.props.iface.ip4}</li>}
+          {this.props.iface.ip6.length > 0 && <li class="list-group-item"><b>ip6: </b>{this.props.iface.ip6}</li>}
+          {this.props.iface.mac.length > 0 && <li class="list-group-item"><b>mac: </b>{this.props.iface.mac}</li>}
+        </ul>
       <div className="icon">
         <i className="ion ion-bag"></i>
       </div>
-      <a href="#" className="small-box-footer">Перейти <i className="fas fa-arrow-circle-right"></i></a>
-    </div>
+      <a href="#" className="card-footer">Перейти <i className="fas fa-arrow-circle-right"></i></a>
+      </div>
   </div>
+    )
   }
 }
 
@@ -33,8 +42,19 @@ class IfaceRow extends React.Component {
 
   render() {
       return (
-      <div className="row">
-        <IfaceElement></IfaceElement>
+        <div>
+          <div className="content-header">
+          <div className="container-fluid">
+            <div className="row mb-2">
+              <div className="col-sm-6">
+                <h1 className="m-0">Интерфейсы</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row row-cols-6">
+        {this.state.ifaces.map(el => <IfaceElement iface={el} key={el.desc}></IfaceElement>)}
+        </div>
       </div>
       )
   }

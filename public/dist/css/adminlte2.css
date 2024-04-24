@@ -53013,4 +53013,8 @@ a.text-muted:hover {
 .small-box  p {
   margin-bottom: 0rem;
 }
+
+.small-box h4 {
+  text-align: center;
+}
 /*# sourceMappingURL=adminlte.css.map */
