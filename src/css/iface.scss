@@ -1,0 +1,54 @@
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.red_btn {
+    border: 3px solid #d8450f;
+}
+
+.red_btn:hover {
+    background-color: #d8450f;
+}
+
+.green_btn {
+    border: 3px solid #04AA6D;
+}
+
+.green_btn:hover {
+    border: 3px solid #04AA6D;
+    background-color: #04AA6D; /* Green */
+}
+
+button {
+    background-color: white;
+    color: black;
+    transition-duration: 0.4s;
+    font-size: 20px;
+    
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    margin: 5px;
+}
+
+
+button:hover {
+    
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    
+}
+
+.rdt_TableHeadRow {
+    background-color: #04AA6D;
+    font-size: 14px;
+}
+
+.rdt_TableHeader div{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+
+}

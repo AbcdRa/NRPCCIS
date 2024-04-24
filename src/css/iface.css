@@ -1,0 +1,32 @@
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: white;
+  color: black;
+  transition-duration: 0.4s;
+  font-size: 20px;
+  border: 3px solid #04AA6D;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #04AA6D; /* Green */
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rdt_TableHeadRow {
+  background-color: #04AA6D;
+  font-size: 20px;
+}
+
+.rdt_TableHeader div {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+}/*# sourceMappingURL=iface.css.map */
