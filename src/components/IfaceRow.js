@@ -22,7 +22,7 @@ class IfaceElement extends React.Component {
       <div className="icon">
         <i className="ion ion-bag"></i>
       </div>
-      <a href="#" className="card-footer">Перейти <i className="fas fa-arrow-circle-right"></i></a>
+      <a href={"/iface/"+this.props.iface.index} className="card-footer">Перейти <i className="fas fa-arrow-circle-right"></i></a>
       </div>
   </div>
     )

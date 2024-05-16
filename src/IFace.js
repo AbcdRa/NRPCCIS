@@ -3,6 +3,13 @@ import withRouter from './withRouters';
 import DataTable from 'react-data-table-component';
 import './css/iface.scss'
 import axios from 'axios';
+import IfaceFlow from './components/IfaceFlow';
+import Navbar from './components/Navbar';
+import useScript from './hooks/useScript';
+
+
+
+
 
 class IFacePacketTable extends React.Component {
 
@@ -34,32 +41,6 @@ class IFacePacketTable extends React.Component {
   }
 
   componentDidMount() {
-    this.getPackets(0);
-  }
-
-  getPackets(page) {
-    axios.get(this.URLRequestPackets + page)
-    .then(res => {
-      const packets = JSON.parse(res.data);
-      this.setState({packets});
-    })
-  }
-
-  render() {
-
-    // const tableCustomStyles = {
-    //   headCells: {
-    //     style: {
-    //       fontSize: '20px',
-    //       fontWeight: 'bold',
-    //       paddingLeft: '0 8px',
-    //       justifyContent: 'center',
-    //       backgroundColor: '#04AA6D',
-          
-    //     },
-    //   },
-    // }
-
     const COLUMNS = ["id", "created_time","src_ip","dst_ip","src_port","dst_port","src_mac","dst_mac","protocol","timestamp","flow_duration",
     "flow_byts_s","flow_pkts_s","fwd_pkts_s","bwd_pkts_s","tot_fwd_pkts","tot_bwd_pkts","totlen_fwd_pkts","totlen_bwd_pkts",
     "fwd_pkt_len_max","fwd_pkt_len_min","fwd_pkt_len_mean","fwd_pkt_len_std","bwd_pkt_len_max","bwd_pkt_len_min","bwd_pkt_len_mean",
@@ -71,24 +52,96 @@ class IFacePacketTable extends React.Component {
     "active_min","active_mean","active_std","idle_max","idle_min","idle_mean","idle_std","fwd_byts_b_avg","fwd_pkts_b_avg",
     "bwd_byts_b_avg","bwd_pkts_b_avg","fwd_blk_rate_avg","bwd_blk_rate_avg","fwd_seg_size_avg","bwd_seg_size_avg","cwe_flag_count",
     "subflow_fwd_pkts","subflow_bwd_pkts","subflow_fwd_byts","subflow_bwd_byts"]
+    const TCOLUMNS = COLUMNS.map(el => {return {data:el}})
+    console.log()
 
-   
-    const columns = []; 
-    for(let c of COLUMNS) {
+    // let script = document.createElement("script");
+    // script.src = "../../plugins/datatables/jquery.dataTables.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-responsive/js/dataTables.responsive.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-buttons/js/dataTables.buttons.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"
+    // document.body.appendChild(script);
+    
+    // script = document.createElement("script");
+    // script.src = "../../plugins/jszip/jszip.min.js"
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/pdfmake/pdfmake.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/pdfmake/vfs_fonts.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-buttons/js/buttons.html5.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-buttons/js/buttons.print.min.js"
+    
+    // document.body.appendChild(script);
+    // script = document.createElement("script");
+    // script.src = "../../plugins/datatables-buttons/js/buttons.colVis.min.js"
+    
+    // document.body.appendChild(script);
+    let script = document.createElement("script");
+    
+    script.text = `new DataTable("#example2", {
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "ajax": 'http://127.0.0.1:7778/get_flows?dev_id=10',
+      columns: ` + JSON.stringify(TCOLUMNS) + 
+      `
+    });
+    `;
+    document.body.appendChild(script);
+}
 
-      columns.push({name: c, selector: (row, i) => row[c], sortable:true })
-    }
-    console.log(columns)
+  getPackets(page) {
+    axios.get(this.URLRequestPackets + page)
+    .then(res => {
+      const packets = res.data;
+      this.setState({packets});
+    })
+  }
+
+  render() {
     return (<div>
-    <div className='centered'><button className='green_btn' onClick={() => {this.startMonitoring()}}>Начать мониторинг</button>
-    <button className='red_btn' onClick={() => {this.stopMonitoring()}}>Закончить мониторинг</button></div>
-    <DataTable
-        title="Сохраненные потоки"
-        columns={columns}
-        data={this.state.packets}
-        customStyles={{}}
-    ></DataTable>
-    </div>)
+      <Navbar></Navbar>
+      <div className="content-wrapper">
+        <section className="content">
+          <div className="container-fluid">
+            <IfaceFlow></IfaceFlow>
+          </div>
+        </section>
+      </div>
+
+
+      </div>
+      )
     
   }
 }

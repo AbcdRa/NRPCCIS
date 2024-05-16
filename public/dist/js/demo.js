@@ -656,4 +656,8 @@
   }, true).append($clear_btn)
   $container.append($brand_variants)
 
+
+
+
+
 })(jQuery)
