@@ -53,80 +53,29 @@ class IFacePacketTable extends React.Component {
     "bwd_byts_b_avg","bwd_pkts_b_avg","fwd_blk_rate_avg","bwd_blk_rate_avg","fwd_seg_size_avg","bwd_seg_size_avg","cwe_flag_count",
     "subflow_fwd_pkts","subflow_bwd_pkts","subflow_fwd_byts","subflow_bwd_byts"]
     const TCOLUMNS = COLUMNS.map(el => {return {data:el}})
-    console.log()
 
-    // let script = document.createElement("script");
-    // script.src = "../../plugins/datatables/jquery.dataTables.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-responsive/js/dataTables.responsive.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-buttons/js/dataTables.buttons.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"
-    // document.body.appendChild(script);
-    
-    // script = document.createElement("script");
-    // script.src = "../../plugins/jszip/jszip.min.js"
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/pdfmake/pdfmake.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/pdfmake/vfs_fonts.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-buttons/js/buttons.html5.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-buttons/js/buttons.print.min.js"
-    
-    // document.body.appendChild(script);
-    // script = document.createElement("script");
-    // script.src = "../../plugins/datatables-buttons/js/buttons.colVis.min.js"
-    
-    // document.body.appendChild(script);
     let script = document.createElement("script");
     
-    script.text = `new DataTable("#example2", {
+    script.text = `
+    if (typeof INITONCE !== 'undefined') { 
+    new DataTable("#example2", {
       "paging": true,
-      "lengthChange": false,
+      "lengthChange": true,
+      'scrollX': true,
       "searching": false,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
-      "responsive": true,
       "ajax": 'http://127.0.0.1:7778/get_flows?dev_id=10',
       columns: ` + JSON.stringify(TCOLUMNS) + 
       `
     });
+    }
+    var INITONCE = true;
     `;
     document.body.appendChild(script);
 }
 
-  getPackets(page) {
-    axios.get(this.URLRequestPackets + page)
-    .then(res => {
-      const packets = res.data;
-      this.setState({packets});
-    })
-  }
+
 
   render() {
     return (<div>
@@ -138,8 +87,6 @@ class IFacePacketTable extends React.Component {
           </div>
         </section>
       </div>
-
-
       </div>
       )
     

@@ -3,8 +3,6 @@ import axios from 'axios';
 
 class IfaceElement extends React.Component {
   render() {
-    console.log(this.props.iface)
-
     return (
   <div className="col card-group mb-2" >
      <div className="card bg-info" >

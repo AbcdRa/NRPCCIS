@@ -27,15 +27,14 @@ export default class IfaceFlow extends React.Component {
                 <h3 className="card-title">Сохраненные потоки</h3>
               </div>
               <div className="card-body">
-                <table id="example2" >
+                <table className='dataTable' id="example2" >
                   <thead>
                   <tr>
-                  {COLUMNS.map((el)=> <th>{el}</th>)}
+                  {COLUMNS.map((el)=> <th className='text-center'>{el}</th>)}
                   </tr>
                   </thead>
 
                   <tfoot>
-
                   </tfoot>
                 </table>
               </div>

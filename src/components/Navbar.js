@@ -8,7 +8,7 @@ class Navbar extends React.Component {
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
         <ul className="navbar-nav">
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" className="nav-link">Главная</a>
+            <a href="/" className="nav-link">Главная</a>
           </li>
         </ul>
         <ul className="navbar-nav ml-auto">
