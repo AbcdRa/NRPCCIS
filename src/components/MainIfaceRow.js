@@ -1,21 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 
-class IfaceElement extends React.Component {
+class MainIfaceElement extends React.Component {
   render() {
     return (
   <div className="col card-group mb-2" >
-     <div className="card bg-info" >
+     <div className={this.props.iface.is_mon ? 'card bg-success':"card bg-info"} >
       <div className="card-body">
       
         <h4 className='text-center'><b>{this.props.iface.index}</b></h4>
         {this.props.iface.desc}
         
       </div>
-      <ul class="list-group list-group-flush" style={{color:"black"}}>
-          {this.props.iface.ip4.length > 0 && <li class="list-group-item"><b>ip4: </b> {this.props.iface.ip4}</li>}
-          {this.props.iface.ip6.length > 0 && <li class="list-group-item"><b>ip6: </b>{this.props.iface.ip6}</li>}
-          {this.props.iface.mac.length > 0 && <li class="list-group-item"><b>mac: </b>{this.props.iface.mac}</li>}
+      <ul className="list-group list-group-flush" style={{color:"black"}}>
+          {this.props.iface.ip4.length > 0 && <li className="list-group-item"><b>ip4: </b> {this.props.iface.ip4}</li>}
+          {this.props.iface.ip6.length > 0 && <li className="list-group-item"><b>ip6: </b>{this.props.iface.ip6}</li>}
+          {this.props.iface.mac.length > 0 && <li className="list-group-item"><b>mac: </b>{this.props.iface.mac}</li>}
         </ul>
       <div className="icon">
         <i className="ion ion-bag"></i>
@@ -27,7 +27,7 @@ class IfaceElement extends React.Component {
   }
 }
 
-class IfaceRow extends React.Component {
+class MainIfaceRow extends React.Component {
   state = {ifaces:[]}
 
   componentDidMount() {
@@ -51,11 +51,11 @@ class IfaceRow extends React.Component {
           </div>
         </div>
         <div className="row row-cols-6">
-        {this.state.ifaces.map(el => <IfaceElement iface={el} key={el.desc}></IfaceElement>)}
+        {this.state.ifaces.map(el => <MainIfaceElement iface={el} key={el.desc}></MainIfaceElement>)}
         </div>
       </div>
       )
   }
 }
 
-export default IfaceRow
+export default MainIfaceRow

@@ -1,8 +1,8 @@
 import React from "react";
 import "./css/table.scss"
 import Navbar from "./components/Navbar";
-import IfaceRow from "./components/IfaceRow";
-import ModelList from "./components/ModelList";
+import MainIfaceRow from "./components/MainIfaceRow";
+import ModelList from "./components/MainModelList";
 
 
 
@@ -14,7 +14,7 @@ export default class Main extends React.Component {
         <div className="content-wrapper">
           <section className="content">
             <div className="container-fluid">
-              <IfaceRow></IfaceRow>
+              <MainIfaceRow></MainIfaceRow>
               <ModelList></ModelList>
             </div>
           </section>

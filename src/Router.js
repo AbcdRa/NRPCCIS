@@ -1,7 +1,7 @@
 import { createBrowserRouter,
          RouterProvider,
        } from 'react-router-dom';
-import IFacePacketTable from './IFace'
+import IFace from './IFace'
 import Analysis from './Analysis';
 import Main from './Main';
 
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/iface/:iface_id",
-    element: <IFacePacketTable></IFacePacketTable>,
+    element: <IFace></IFace>,
     errorElement: <h1>СМЕРТЬ</h1>,
   },
   {

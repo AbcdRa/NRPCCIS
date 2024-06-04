@@ -30,7 +30,7 @@ export default class IfaceFlow extends React.Component {
                 <table className='dataTable' id="example2" >
                   <thead>
                   <tr>
-                  {COLUMNS.map((el)=> <th className='text-center'>{el}</th>)}
+                  {COLUMNS.map((el)=> <th className='text-center' key={el}>{el}</th>)}
                   </tr>
                   </thead>
 

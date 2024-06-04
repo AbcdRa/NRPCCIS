@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 
-class ModelItem extends React.Component {
+class MainModelItem extends React.Component {
 
     state = {
         reload: false
@@ -41,7 +41,7 @@ class ModelItem extends React.Component {
 }
 
 
-export default class ModelList extends React.Component {
+export default class MainModelList extends React.Component {
     state = {models:[], current_model:''}
 
     stateUpdate() {
@@ -74,7 +74,7 @@ export default class ModelList extends React.Component {
             </div>
         </div>
         <div className='col-md-4 mt-2'>
-            {this.state.models.map(el => <ModelItem current={el===this.state.current_model} model_name={el} update_cb={()=>{this.stateUpdate()}}></ModelItem>)}
+            {this.state.models.map(el => <MainModelItem current={el===this.state.current_model} model_name={el} key={el} update_cb={()=>{this.stateUpdate()}}></MainModelItem>)}
         </div>
         </div>
         )

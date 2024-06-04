@@ -1,5 +1,5 @@
 import React from 'react';
-import IfaceRow from './IfaceRow';
+import MainIfaceRow from './MainIfaceRow';
 import Others from './Others';
 
 
@@ -20,7 +20,7 @@ class Contents extends React.Component {
           <div className="content-wrapper">
           <section className="content">
             <div className="container-fluid">
-              <IfaceRow></IfaceRow>
+              <MainIfaceRow></MainIfaceRow>
             </div>
           </section>
         </div>)
